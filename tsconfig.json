@@ -20,8 +20,9 @@
       "noEmit": false,
       "jsx": "react-jsx",
       "baseUrl": "src",
+      "outDir": "dist"
     },
     "include": [
-      "src"
+      "src/MaskedTextField/index.tsx",
     ]
   }
