@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FormHelperText } from "@material-ui/core";
-import MaskedTextField from "MaskedTextField";
-
+import MaskedTextField from "../../MaskedTextField";
 
 const TelephoneMaskedTextField = (props: any) => {
 
