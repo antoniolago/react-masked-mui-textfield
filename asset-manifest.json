@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-masked-mui-textfield/static/css/main.073c9b0a.css",
+    "main.js": "/react-masked-mui-textfield/static/js/main.4cf5b32b.js",
+    "index.html": "/react-masked-mui-textfield/index.html",
+    "main.073c9b0a.css.map": "/react-masked-mui-textfield/static/css/main.073c9b0a.css.map",
+    "main.4cf5b32b.js.map": "/react-masked-mui-textfield/static/js/main.4cf5b32b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.4cf5b32b.js"
+  ]
+}
