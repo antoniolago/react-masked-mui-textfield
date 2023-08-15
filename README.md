@@ -1,6 +1,9 @@
-#react-masked-mui-textfield
+# react-masked-mui-textfield
 
 Component that implements TextField + IMaskInput
+
+# Demo
+https://antoniolago.github.io/react-masked-mui-textfield/
 
 # Usage
 Install it by running `npm install react-masked-mui-textfield --save` or `yarn add react-masked-mui-textfield`. Then:
