@@ -19,6 +19,7 @@ const TextMaskCustom = React.forwardRef<HTMLElement, any>(
                 name={maskProps.name}
                 mask={maskProps.mask}
                 value={maskProps.value}
+                inputRef={ref}
                 onAccept={(value: any) => {
                     onChange({ target: { name: maskProps.name, value } });
                 }}
@@ -27,14 +28,16 @@ const TextMaskCustom = React.forwardRef<HTMLElement, any>(
         );
     }
 );
-export default function MaskedTextField(props: any) {
-    return (
-        <TextField
-            {...props}
-            InputProps={{
-                inputComponent: TextMaskCustom,
-                inputProps: { mask: props.mask, value: props.value, name: props.name, onChange: props.onChange },
-            }}
-        />
-    );
-}
+const MaskedTextField = React.forwardRef<HTMLElement, any>(
+    function MaskedTextFieldFn(props, ref) {
+        return (
+            <TextField
+                {...props}
+                InputProps={{
+                    inputComponent: TextMaskCustom,
+                    inputProps: { mask: props.mask, value: props.value, name: props.name, onChange: props.onChange },
+                }} />
+        )
+    }
+)
+export default MaskedTextField;
