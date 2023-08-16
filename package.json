@@ -1,6 +1,6 @@
 {
   "name": "react-masked-mui-textfield",
-  "version": "1.0.03",
+  "version": "1.0.04",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
