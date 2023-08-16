@@ -1,6 +1,6 @@
 {
   "name": "react-masked-mui-textfield",
-  "version": "1.0.02",
+  "version": "1.0.03",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,6 +30,7 @@
     "build": "set NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "build:types": "tsc",
     "build-package": "yarn run build && yarn run build:types",
+    "build-package-local": "yarn run build && yarn run build:types && npm pack --pack-destination .",
     "build-page": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

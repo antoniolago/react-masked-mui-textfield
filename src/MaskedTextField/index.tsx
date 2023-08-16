@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IMaskInput } from "react-imask";
 import TextField from "@mui/material/TextField";
 
-interface MaskedTextFieldProps {
+interface CustomProps {
     onChange: (event: { target: { name: string; value: string } }) => void;
     name: string;
     mask: string;
     value: any;
 }
 
-const CustomImask = React.forwardRef<HTMLElement, MaskedTextFieldProps>(
+
+const TextMaskCustom = React.forwardRef<HTMLElement, any>(
     function TextMaskCustom(maskProps, ref) {
-        const { onChange, ...inheritedProps } = maskProps;
+        const { onChange, ...other } = maskProps;
         return (
             <IMaskInput
-                {...inheritedProps}
+                {...other}
                 name={maskProps.name}
                 mask={maskProps.mask}
                 value={maskProps.value}
@@ -26,19 +27,14 @@ const CustomImask = React.forwardRef<HTMLElement, MaskedTextFieldProps>(
         );
     }
 );
-
-const MaskedTextField = (props: any) =>
-    <TextField
-        {...props}
-        InputProps={{
-            inputComponent: CustomImask,
-            inputProps: {
-                mask: props.mask,
-                value: props.value,
-                name: props.name,
-                onChange: props.onChange
-            }
-        }}
-    />
-
-export default MaskedTextField;
+export default function MaskedTextField(props: any) {
+    return (
+        <TextField
+            {...props}
+            InputProps={{
+                inputComponent: TextMaskCustom,
+                inputProps: { mask: props.mask, value: props.value, name: props.name, onChange: props.onChange },
+            }}
+        />
+    );
+}
