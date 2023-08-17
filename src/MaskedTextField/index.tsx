@@ -23,7 +23,6 @@ const TextMaskCustom = React.forwardRef<HTMLElement, any>(
                 onAccept={(value: any) => {
                     onChange({ target: { name: maskProps.name, value } });
                 }}
-                overwrite
             />
         );
     }
