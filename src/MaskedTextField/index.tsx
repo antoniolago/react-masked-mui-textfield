@@ -35,7 +35,8 @@ const MaskedTextField = React.forwardRef<HTMLElement, any>(
                 InputProps={{
                     inputComponent: TextMaskCustom,
                     inputProps: { mask: props.mask, value: props.value, name: props.name, onChange: props.onChange },
-                }} />
+                }} 
+                ref={ref}/>
         )
     }
 )
