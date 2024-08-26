@@ -3,7 +3,7 @@ import { IMaskInput, IMaskInputProps } from "react-imask";
 import TextField, { TextFieldProps as MaterialTextFieldProps } from "@mui/material/TextField";
 import Input, { InputProps as JoyInputProps } from "@mui/joy/Input";
 
-type MaskedTextFieldProps<MaskElement extends HTMLElement> = {
+export type MaskedTextFieldProps<MaskElement extends HTMLElement> = {
     imaskProps: IMaskInputProps<MaskElement>;
     lib?: "joy" | "material";
 } & (MaterialTextFieldProps | JoyInputProps);
