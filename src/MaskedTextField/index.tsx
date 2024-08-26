@@ -1,43 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { IMaskInput } from "react-imask";
-import TextField from "@mui/material/TextField";
+import React from "react";
+import { IMaskInput, IMaskInputProps } from "react-imask";
+import TextField, { TextFieldProps as MaterialTextFieldProps } from "@mui/material/TextField";
+import Input, { InputProps as JoyInputProps } from "@mui/joy/Input";
 
-interface CustomProps {
-    onChange: (event: { target: { name: string; value: string } }) => void;
-    name: string;
-    mask: string;
-    value: any;
-}
+type MaskedTextFieldProps<MaskElement extends HTMLElement> = {
+    imaskProps: IMaskInputProps<MaskElement>;
+    lib?: "joy" | "material";
+} & (MaterialTextFieldProps | JoyInputProps);
 
-
-const TextMaskCustom = React.forwardRef<HTMLElement, any>(
-    function TextMaskCustom(maskProps, ref) {
-        const { onChange, ...other } = maskProps;
+const TextMaskCustom = React.forwardRef<HTMLInputElement, MaskedTextFieldProps<any>>(
+    function TextMaskCustom({ imaskProps, ...otherProps }, ref) {
         return (
             <IMaskInput
-                {...other}
-                name={maskProps.name}
-                mask={maskProps.mask}
-                value={maskProps.value}
-                inputRef={ref}
+                {...imaskProps}
+                inputRef={ref as React.Ref<HTMLInputElement>}
                 onAccept={(value: any) => {
-                    onChange({ target: { name: maskProps.name, value } });
+                    if (otherProps.onChange) {
+                        otherProps.onChange({ target: { name: imaskProps.name!, value } } as React.ChangeEvent<HTMLInputElement>);
+                    }
                 }}
             />
         );
     }
 );
-const MaskedTextField = React.forwardRef<HTMLElement, any>(
-    function MaskedTextFieldFn(props, ref) {
-        return (
-            <TextField
-                {...props}
-                InputProps={{
-                    inputComponent: TextMaskCustom,
-                    inputProps: { mask: props.mask, value: props.value, name: props.name, onChange: props.onChange },
-                }} 
-                ref={ref}/>
-        )
+
+const MaskedTextField: React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<MaskedTextFieldProps<HTMLInputElement>> & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef<HTMLInputElement, MaskedTextFieldProps<HTMLInputElement>>(
+    function MaskedTextFieldFn({ imaskProps, lib, ...props }, ref): JSX.Element {
+        if (lib === "material") {
+            return (
+                <TextField
+                    {...(props as MaterialTextFieldProps)}
+                    InputProps={{
+                        inputComponent: TextMaskCustom as any,
+                        inputProps: { ...imaskProps, onChange: props.onChange },
+                    }}
+                    inputRef={ref}
+                />
+            );
+        } else {
+            return (
+                <Input
+                    {...(props as JoyInputProps)}
+                    slotProps={{
+                        input: { ...imaskProps, onChange: props.onChange } as any,
+                    }}
+                    component={TextMaskCustom as any}
+                    ref={ref}
+                />
+            );
+        }
     }
-)
+);
+
 export default MaskedTextField;
